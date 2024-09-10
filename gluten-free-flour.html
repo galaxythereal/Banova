@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دقيق خالي من الجلوتين - بانوفا</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #00A86B;
+            --secondary-color: #FFC300;
+            --text-color: #333333;
+            --bg-color: #F8F9FA;
+            --white: #FFFFFF;
+            --dark-bg: #1A1A1A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            overflow-x: hidden;
+            text-align: right;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--dark-bg);
+            color: var(--white);
+            padding: 20px 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .hero {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .content {
+            padding: 50px 0;
+        }
+
+        .content h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+        }
+
+        .feature {
+            flex: 1;
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 0 15px;
+        }
+
+        .feature h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .cta {
+            background-color: var(--secondary-color);
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .cta h2 {
+            color: var(--dark-bg);
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #008c5a;
+        }
+
+        footer {
+            background-color: var(--dark-bg);
+            color: var(--white);
+            text-align: center;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="Index.html">الرئيسية</a></li>
+                <li><a href="Index.html#about">من نحن</a></li>
+                <li><a href="Index.html#solutions">حلولنا</a></li>
+                <li><a href="Index.html#impact">الأثر</a></li>
+                <li><a href="Index.html#get-involved">انضم إلينا</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>دقيق خالي من الجلوتين</h1>
+            <p>حل مستدام ومغذي مستخرج من مخلفات الموز</p>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container">
+            <h2>عن منتجنا</h2>
+            <p>دقيقنا الخالي من الجلوتين هو ثورة في عالم التغذية والاستدامة. مصنوع من مخلفات الموز، يوفر هذا المنتج المبتكر حلاً مزدوجًا: تقليل النفايات الزراعية وتوفير خيار صحي للأشخاص الذين يعانون من حساسية الجلوتين.</p>
+
+            <div class="features">
+                <div class="feature">
+                    <h3>صحي</h3>
+                    <p>غني بالألياف والمعادن الأساسية، مما يجعله خيارًا مثاليًا للنظام الغذائي المتوازن.</p>
+                </div>
+                <div class="feature">
+                    <h3>مستدام</h3>
+                    <p>يساهم في تقليل النفايات الزراعية ويوفر مصدر دخل إضافي للمزارعين.</p>
+                </div>
+                <div class="feature">
+                    <h3>متعدد الاستخدامات</h3>
+                    <p>يمكن استخدامه في مجموعة متنوعة من الوصفات، من الخبز إلى الحلويات.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>هل أنت مهتم بمنتجنا؟</h2>
+            <a href="Index.html#get-involved" class="cta-button">تواصل معنا</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 بانوفا. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+</body>
+</html>

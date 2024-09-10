@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بانوفا - ثورة في إدارة مخلفات الموز</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #00A86B;
+            --secondary-color: #FFC300;
+            --text-color: #333333;
+            --bg-color: #F8F9FA;
+            --white: #FFFFFF;
+            --dark-bg: #1A1A1A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            overflow-x: hidden;
+            text-align: right;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: rgba(26, 26, 26, 0.8);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+            margin-left: 15px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-right: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            right: 0;
+            background-color: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background-color: var(--dark-bg);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.7;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: var(--white);
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-color);
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--white);
+        }
+
+        .cta-button.secondary {
+            background-color: transparent;
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+        }
+
+        .cta-button.secondary:hover {
+            background-color: var(--secondary-color);
+            color: var(--dark-bg);
+        }
+
+        .intro {
+            padding: 100px 0;
+            text-align: center;
+            background-color: var(--white);
+        }
+
+        .intro h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .intro p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature {
+            flex: 1;
+            background-color: var(--bg-color);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover img {
+            transform: scale(1.1);
+        }
+
+        .feature h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .stats {
+            background-color: var(--dark-bg);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            margin: 20px;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        .stat-label {
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+            .hero p {
+                font-size: 18px;
+            }
+            .features {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <img src="<?= getImageUrl('logo') ?>" alt="شعار بانوفا">
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#about">من نحن</a></li>
+                    <li><a href="#solutions">حلولنا</a></li>
+                    <li><a href="#impact">الأثر</a></li>
+                    <li><a href="#get-involved">انضم إلينا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <img src="<?= getImageUrl('hero_bg') ?>" alt="بانوفا" class="hero-bg">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>ثورة في إدارة مخلفات الموز</h1>
+                    <p>تمكين المجتمعات وتعزيز الاستدامة من خلال حلول مبتكرة لمنتجات الموز الثانوية</p>
+                    <div class="cta-buttons">
+                        <a href="#about" class="cta-button">اكتشف رسالتنا</a>
+                        <a href="#get-involved" class="cta-button secondary">انضم إلى الثورة</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="intro">
+            <div class="container">
+                <h2>مرحبًا بكم في بانوفا</h2>
+                <p>في بانوفا، نحن رواد في تقديم حلول مستدامة تحول مخلفات الموز إلى موارد قيمة. نهجنا المبتكر يواجه التحديات البيئية بينما يخلق فرصًا اقتصادية للمجتمعات المحلية.</p>
+                <div class="features">
+                    <div class="feature">
+                        <img src="<?= getImageUrl('flour') ?>" alt="دقيق خالي من الجلوتين">
+                        <h3>دقيق خالي من الجلوتين</h3>
+                        <p>تحويل مخلفات الموز إلى دقيق عالي الجودة وخالي من الجلوتين، مثالي للأشخاص الذين يعانون من حساسية الجلوتين.</p>
+                    </div>
+                    <div class="feature">
+                        <img src="<?= getImageUrl('hydrogel') ?>" alt="الهيدروجيل">
+                        <h3>الهيدروجيل</h3>
+                        <p>استخدام ألياف الموز لإنتاج الهيدروجيل المستخدم في تحسين نوعية التربة وتخزين المياه في الزراعة.</p>
+                    </div>
+                    <div class="feature">
+                        <img src="<?= getImageUrl('pigments') ?>" alt="أصباغ طبيعية">
+                        <h3>أصباغ طبيعية</h3>
+                        <p>استغلال الأصباغ الطبيعية الموجودة في مخلفات الموز لتصنيع ملونات آمنة وصديقة للبيئة للأقمشة والأغذية.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+<!-- About Us Section -->
+<section id="about" class="about">
+    <div class="container">
+        <h2>من نحن</h2>
+        <p>بانوفا ليست مجرد مشروع، بل هي حركة نحو مستقبل مستدام. من خلال تحويل مخلفات الموز إلى منتجات مبتكرة، نهدف إلى تقليل التأثير البيئي وخلق فرص اقتصادية جديدة للمجتمعات الزراعية.</p>
+        <div class="about-content">
+            <div class="about-image">
+                <img src="<?= getImageUrl('about_us_image') ?>" alt="فريق بانوفا">
+            </div>
+            <div class="about-text">
+                <h3>رؤيتنا</h3>
+                <p>أن نقود الثورة العالمية في إدارة مخلفات الموز المستدامة، وخلق نظام بيئي خالٍ من النفايات يمكّن المجتمعات ويحمي الكوكب.</p>
+                <h3>مهمتنا</h3>
+                <p>نحن ملتزمون بتحويل مخلفات الموز إلى موارد قيمة، بدءًا من الدقيق الخالي من الجلوتين إلى الهيدروجيل الصديق للبيئة والأصباغ الطبيعية، وتقديم حلول مبتكرة تدفع نحو التغيير الاجتماعي والبيئي الإيجابي.</p>
+                <h3>لماذا بانوفا؟</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> حلول مستدامة: تحويل مخلفات الموز إلى منتجات ذات قيمة عالية.</li>
+                    <li><i class="fas fa-check-circle"></i> تأثير مجتمعي: تمكين المزارعين والمجتمعات المحلية.</li>
+                    <li><i class="fas fa-check-circle"></i> الحفاظ على البيئة: تعزيز نظام بيئي خالٍ من النفايات.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .about {
+        padding: 100px 0;
+        background-color: var(--bg-color);
+        text-align: center;
+    }
+
+    .about h2 {
+        font-size: 40px;
+        margin-bottom: 20px;
+        color: var(--primary-color);
+    }
+
+    .about p {
+        font-size: 18px;
+        max-width: 800px;
+        margin: 0 auto 40px;
+        color: var(--text-color);
+    }
+
+    .about-content {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        flex-wrap: wrap;
+    }
+
+    .about-image {
+        flex: 1;
+    }
+
+    .about-image img {
+        width: 100%;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-text {
+        flex: 2;
+        text-align: right; /* Aligns text to the right for Arabic */
+    }
+
+    .about-text h3 {
+        font-size: 24px;
+        margin-bottom: 15px;
+        color: var(--primary-color);
+    }
+
+    .about-text p {
+        margin-bottom: 20px;
+        line-height: 1.6;
+    }
+
+    .about-text ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .about-text ul li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        color: var(--text-color);
+    }
+
+    .about-text ul li i {
+        color: var(--primary-color);
+        margin-right: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .about-content {
+            flex-direction: column;
+        }
+
+        .about-text {
+            text-align: center;
+        }
+    }
+</style>
+
+
+        <section class="stats">
+            <div class="container">
+                <h2>الأثر الذي نحققه</h2>
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="13">0</div>
+                        <div class="stat-label">أهداف التنمية المستدامة</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="10000+">0</div>
+                        <div class="stat-label">أطنان من المخلفات المستخدمة</div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="50+">0</div>
+                        <div class="stat-label">فرص عمل تم خلقها</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<section id="solutions" class="intro">
+    <div class="container">
+        <h2>حلولنا</h2>
+        <p>بانوفا رائدة في تطوير مجموعة من المنتجات المبتكرة المستخلصة من مخلفات الموز، كل منها يساهم في مستقبل أكثر استدامة. إليكم بعض من حلولنا الرئيسية:</p>
+        <div class="features">
+            <div class="feature">
+                <img src="<?= getImageUrl('flour_solution_icon') ?>" alt="دقيق خالي من الجلوتين">
+                <h3>دقيق خالي من الجلوتين</h3>
+                <p>دقيقنا الخالي من الجلوتين المستخرج من الموز ليس فقط مغذياً، بل يساعد أيضاً في تقليل المخلفات الزراعية، مما يوفر بديلاً صحياً للمستهلكين ومصدراً جديداً للدخل للمزارعين.</p>
+                <a href="gluten-free-flour.html" class="cta-button">اعرف المزيد</a>
+            </div>
+            <div class="feature">
+                <img src="<?= getImageUrl('hydrogel_solution_icon') ?>" alt="تقنية الهيدروجيل">
+                <h3>تقنية الهيدروجيل</h3>
+                <p>الهيدروجيل المصنوع من قشور الموز يُستخدم في الزراعة لتحسين احتفاظ التربة بالرطوبة، وتقليل استخدام المياه، وتعزيز نمو النباتات.</p>
+                <a href="hydrogel-technology.html" class="cta-button">اعرف المزيد</a>
+            </div>
+            <div class="feature">
+                <img src="<?= getImageUrl('label_solution_icon') ?>" alt="الملصقات الذكية">
+                <h3>الملصقات الذكية</h3>
+                <p>الملصقات الذكية المبتكرة من بانوفا، المصنوعة من منتجات الموز الثانوية، تُحدث ثورة في تعبئة الأغذية بحلول صديقة للبيئة وقابلة للتحلل الحيوي، مما يطيل من عمر الصلاحية.</p>
+                <a href="smart-labels.html" class="cta-button">اعرف المزيد</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="get-involved" class="intro">
+    <div class="container">
+        <h2>شارك معنا</h2>
+        <p>انضم إلينا في ثورة إدارة المخلفات وخلق مستقبل مستدام. سواء كنت فرداً أو منظمة أو مجتمعاً، هناك العديد من الطرق للمشاركة وإحداث فرق.</p>
+        <div class="features">
+            <div class="feature">
+                <img src="<?= getImageUrl('volunteer_icon') ?>" alt="تطوع معنا">
+                <h3>تطوع معنا</h3>
+                <p>كن جزءًا من التغيير بالتطوع في مشاريعنا وفعالياتنا. وقتك ومهاراتك يمكن أن تدفع المبادرات المؤثرة التي تدعم مهمتنا.</p>
+            </div>
+            <div class="feature">
+                <img src="<?= getImageUrl('partner_icon') ?>" alt="شارك معنا">
+                <h3>شارك معنا</h3>
+                <p>تعاون مع بانوفا لتطوير حلول جديدة، وتوسيع نطاق وصولنا، أو جلب ممارسات مستدامة إلى مجتمعك أو عملك.</p>
+            </div>
+            <div class="feature">
+                <img src="<?= getImageUrl('donate_icon') ?>" alt="تبرع">
+                <h3>تبرع</h3>
+                <p>ادعم جهودنا لتقليل المخلفات وتمكين المجتمعات بالتبرع. كل مساهمة تساعدنا على إحداث تأثير أكبر.</p>
+            </div>
+        </div>
+        
+        <div class="form-container">
+            <h3>اتصل بنا</h3>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">الاسم</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="interest">مجال الاهتمام</label>
+                    <select id="interest" name="interest" required>
+                        <option value="">اختر مجالاً</option>
+                        <option value="volunteer">التطوع</option>
+                        <option value="partnership">الشراكة</option>
+                        <option value="donation">التبرع</option>
+                        <option value="other">أخرى</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">الرسالة</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="cta-button">إرسال</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<style>
+    .form-container {
+        max-width: 600px;
+        margin: 50px auto 0;
+        padding: 30px;
+        background-color: var(--white);
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container h3 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: var(--primary-color);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .form-group textarea {
+        height: 150px;
+    }
+
+    #contactForm .cta-button {
+        width: 100%;
+        cursor: pointer;
+    }
+</style>
+<!-- Impact Section -->
+<section id="impact" class="stats">
+    <div class="container">
+        <h2 style="color: var(--secondary-color); margin-bottom: 30px;">تأثيرنا</h2>
+        <p style="max-width: 800px; margin: 0 auto 40px;">في بانوفا، تأثيرنا يتجاوز المنتجات؛ يتعلق بتغيير الحياة، وحماية البيئة، وخلق مستقبل مستدام للجميع. عملنا يساهم بشكل مباشر في أهداف التنمية المستدامة للأمم المتحدة، مما يواجه التحديات في مجالات التغذية والزراعة وغيرها.</p>
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number" data-target="13000">0</div>
+                <div class="stat-label">المجتمعات المستفيدة</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="20">0</div>
+                <div class="stat-label">الدول التي وصلنا إليها</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="100">0</div>
+                <div class="stat-label">الجوائز والاعترافات</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="15">0</div>
+                <div class="stat-label">الأهداف التنموية التي نحققها</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero animations
+        gsap.from('.hero-content', {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            ease: 'power3.out'
+        });
+
+        // Feature animations
+        gsap.utils.toArray('.feature').forEach((feature, index) => {
+            gsap.from(feature, {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: feature,
+                    start: "top 80%",
+                },
+                delay: index * 0.2
+            });
+        });
+
+        // Stats counter animation
+        const stats = document.querySelectorAll('.stat-number');
+        stats.forEach(stat => {
+            const target = parseInt(stat.getAttribute('data-target'));
+            gsap.to(stat, {
+                innerHTML: target,
+                duration: 2,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: stat,
+                    start: "top 80%",
+                },
+                onUpdate: function() {
+                    stat.innerHTML = Math.ceil(this.targets()[0].innerHTML);
+                }
+            });
+        });
+        
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    var formData = new FormData(this);
+    var jsonData = {};
+    formData.forEach(function(value, key){
+        jsonData[key] = value;
+    });
+
+    google.script.run.withSuccessHandler(onSuccess).withFailureHandler(onFailure).submitForm(jsonData);
+});
+
+function onSuccess(response) {
+    alert('شكراً لك! تم إرسال رسالتك بنجاح.');
+    document.getElementById('contactForm').reset();
+}
+
+function onFailure(error) {
+    alert('عذراً، حدث خطأ أثناء إرسال الرسالة. الرجاء المحاولة مرة أخرى.');
+}
+    </script>
+</body>
+</html>
