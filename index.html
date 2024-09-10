@@ -183,6 +183,8 @@ footer {
     background-color: #333;
     color: #fff;
     padding: 3rem 0 1rem;
+      direction: rtl; /* Sets text direction to right-to-left */
+    text-align: right; /* Aligns text to the right */
 }
 
 .footer-content {
@@ -700,13 +702,14 @@ document.addEventListener('DOMContentLoaded', function() {
         attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    // Add markers for your impact locations
-    var locations = [
-        {lat: 31.7917, lng: -7.0926, name: "المغرب"},
-        {lat: 30.0444, lng: 31.2357, name: "مصر"},
-        {lat: 23.8859, lng: 45.0792, name: "السعودية"},
-        // Add more locations as needed
-    ];
+// Add markers for your impact locations
+var locations = [
+    {lat: 20.5937, lng: 78.9629, name: "الهند"}, // India
+    {lat: -30.5595, lng: 22.9375, name: "جنوب أفريقيا"}, // South Africa
+    {lat: 15.4542, lng: 18.7322, name: "تشاد"}, // Chad
+    // Add more locations as needed
+];
+
 
     locations.forEach(function(loc) {
         L.marker([loc.lat, loc.lng]).addTo(map)
@@ -714,7 +717,31 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-
+<!-- Impact Section -->
+<section id="impact" class="stats">
+    <div class="container">
+        <h2 style="color: var(--secondary-color); margin-bottom: 30px;">تأثيرنا</h2>
+        <p style="max-width: 800px; margin: 0 auto 40px;">في بانوفا، تأثيرنا يتجاوز المنتجات؛ يتعلق بتغيير الحياة، وحماية البيئة، وخلق مستقبل مستدام للجميع. عملنا يساهم بشكل مباشر في أهداف التنمية المستدامة للأمم المتحدة، مما يواجه التحديات في مجالات التغذية والزراعة وغيرها.</p>
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number" data-target="13000">0</div>
+                <div class="stat-label">المجتمعات المستفيدة</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="20">0</div>
+                <div class="stat-label">الدول التي وصلنا إليها</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="100">0</div>
+                <div class="stat-label">الجوائز والاعترافات</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="15">0</div>
+                <div class="stat-label">الأهداف التنموية التي نحققها</div>
+            </div>
+        </div>
+    </div>
+</section>
 <section id="get-involved" class="intro">
     <div class="container">
         <h2>شارك معنا</h2>
@@ -866,31 +893,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
         cursor: pointer;
     }
 </style>
-<!-- Impact Section -->
-<section id="impact" class="stats">
-    <div class="container">
-        <h2 style="color: var(--secondary-color); margin-bottom: 30px;">تأثيرنا</h2>
-        <p style="max-width: 800px; margin: 0 auto 40px;">في بانوفا، تأثيرنا يتجاوز المنتجات؛ يتعلق بتغيير الحياة، وحماية البيئة، وخلق مستقبل مستدام للجميع. عملنا يساهم بشكل مباشر في أهداف التنمية المستدامة للأمم المتحدة، مما يواجه التحديات في مجالات التغذية والزراعة وغيرها.</p>
-        <div class="stats-container">
-            <div class="stat-item">
-                <div class="stat-number" data-target="13000">0</div>
-                <div class="stat-label">المجتمعات المستفيدة</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number" data-target="20">0</div>
-                <div class="stat-label">الدول التي وصلنا إليها</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number" data-target="100">0</div>
-                <div class="stat-label">الجوائز والاعترافات</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number" data-target="15">0</div>
-                <div class="stat-label">الأهداف التنموية التي نحققها</div>
-            </div>
-        </div>
-    </div>
-</section>
+
 
 
     </main>
@@ -971,40 +974,41 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
             });
         });
     </script>
-            < <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="https://i.postimg.cc/vHHvd73x/Untitled-3.png" alt="Banova Logo">
-                </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#solutions">Our Solutions</a></li>
-                        <li><a href="#impact">Impact</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h4>Contact Us</h4>
-                    <p>Email: info@banova.com</p>
-                    <p>Phone: +1 (555) 123-4567</p>
-                    <p>Address: 123 Eco Street, Green City, Earth</p>
-                </div>
-                <div class="footer-social">
-                    <h4>Follow Us</h4>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                </div>
+       <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="https://i.postimg.cc/vHHvd73x/Untitled-3.png" alt="شعار بانوفا">
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Banova. All rights reserved.</p>
+            <div class="footer-links">
+                <h4>روابط سريعة</h4>
+                <ul>
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#about">من نحن</a></li>
+                    <li><a href="#solutions">حلولنا</a></li>
+                    <li><a href="#impact">تأثيرنا</a></li>
+                    <li><a href="#get-involved">انضم إلينا</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>تواصل معنا</h4>
+                <p>البريد الإلكتروني: eng-mahmoudezzat@outlook.com</p>
+                <p>الهاتف: 01060997561</p>
+                <p>العنوان: سبك الأحد, اشمون, المنوفية</p>
+            </div>
+            <div class="footer-social">
+                <h4>تابعنا</h4>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
             </div>
         </div>
-    </footer>
+        <div class="footer-bottom">
+            <p>&copy; 2024 بانوفا. جميع الحقوق محفوظة.</p>
+        </div>
+    </div>
+</footer>
+
 </body>
 </html>
