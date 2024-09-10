@@ -258,36 +258,42 @@
             color: var(--primary-color);
         }
 
-        .stats {
-            background-color: var(--dark-bg);
-            color: var(--white);
-            padding: 50px 0;
-            text-align: center;
-        }
+     .stats {
+    background-color: var(--dark-bg);
+    color: var(--white);
+    padding: 50px 0;
+    text-align: center;
+    width: 100vw; /* Ensures the section spans the full width of the viewport */
+    margin: 0; /* Removes any default margin */
+}
 
-        .stats-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
+.stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%; /* Ensures the container spans the full width of the parent */
+    max-width: 1200px; /* Optional: Limit the max width for better readability on larger screens */
+    margin: 0 auto; /* Center the container within the stats section */
+    padding: 0 20px; /* Optional: Adds padding to prevent content from touching the edges */
+}
 
-        .stat-item {
-            flex-basis: calc(50% - 20px);
-            margin: 10px;
-        }
+.stat-item {
+    flex-basis: calc(50% - 20px);
+    margin: 10px;
+}
 
-        .stat-number {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--secondary-color);
-        }
+.stat-number {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--secondary-color);
+}
 
-        .stat-label {
-            font-size: 16px;
-            text-transform: uppercase;
-        }
+.stat-label {
+    font-size: 16px;
+    text-transform: uppercase;
+}
 
         /* Improved mobile styles */
         @media (min-width: 768px) {
