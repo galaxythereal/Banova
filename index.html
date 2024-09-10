@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <style>
+        /* Existing styles */
         :root {
             --primary-color: #00A86B;
             --secondary-color: #FFC300;
@@ -37,6 +38,7 @@
             padding: 0 20px;
         }
 
+        /* Mobile-first approach */
         header {
             background-color: rgba(26, 26, 26, 0.8);
             position: fixed;
@@ -52,7 +54,7 @@
 
         nav {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
             padding: 10px 0;
         }
@@ -60,20 +62,27 @@
         .logo {
             display: flex;
             align-items: center;
+            margin-bottom: 10px;
         }
 
         .logo img {
-            height: 60px;
-            margin-left: 15px;
+            height: 40px;
+            margin-left: 10px;
         }
 
         .nav-links {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .nav-links.active {
             display: flex;
-            list-style: none;
         }
 
         .nav-links li {
-            margin-right: 30px;
+            margin: 10px 0;
         }
 
         .nav-links a {
@@ -97,6 +106,13 @@
 
         .nav-links a:hover::after {
             width: 100%;
+        }
+
+        .menu-toggle {
+            display: block;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--white);
         }
 
         .hero {
@@ -123,25 +139,29 @@
             position: relative;
             z-index: 1;
             color: var(--white);
-            max-width: 800px;
+            max-width: 100%;
+            padding: 0 20px;
+            text-align: center;
         }
 
         .hero h1 {
-            font-size: 56px;
+            font-size: 36px;
             margin-bottom: 20px;
             line-height: 1.2;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         .hero p {
-            font-size: 20px;
+            font-size: 18px;
             margin-bottom: 30px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
         .cta-buttons {
             display: flex;
-            gap: 20px;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
         }
 
         .cta-button {
@@ -154,6 +174,9 @@
             font-weight: 600;
             transition: all 0.3s ease;
             border: 2px solid var(--primary-color);
+            width: 100%;
+            max-width: 250px;
+            text-align: center;
         }
 
         .cta-button:hover {
@@ -173,26 +196,26 @@
         }
 
         .intro {
-            padding: 100px 0;
+            padding: 50px 0;
             text-align: center;
             background-color: var(--white);
         }
 
         .intro h2 {
-            font-size: 40px;
+            font-size: 32px;
             margin-bottom: 20px;
             color: var(--primary-color);
         }
 
         .intro p {
-            font-size: 18px;
-            max-width: 800px;
+            font-size: 16px;
+            max-width: 100%;
             margin: 0 auto 40px;
         }
 
         .features {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             gap: 30px;
             margin-top: 50px;
         }
@@ -200,20 +223,20 @@
         .feature {
             flex: 1;
             background-color: var(--bg-color);
-            padding: 40px;
+            padding: 30px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
 
         .feature:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
         }
 
         .feature img {
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             object-fit: contain;
             margin-bottom: 20px;
             transition: transform 0.3s ease;
@@ -224,7 +247,7 @@
         }
 
         .feature h3 {
-            font-size: 24px;
+            font-size: 22px;
             margin-bottom: 15px;
             color: var(--primary-color);
         }
@@ -232,41 +255,134 @@
         .stats {
             background-color: var(--dark-bg);
             color: var(--white);
-            padding: 80px 0;
+            padding: 50px 0;
             text-align: center;
         }
 
         .stats-container {
             display: flex;
-            justify-content: space-around;
             flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
         }
 
         .stat-item {
-            margin: 20px;
+            flex-basis: calc(50% - 20px);
+            margin: 10px;
         }
 
         .stat-number {
-            font-size: 48px;
+            font-size: 36px;
             font-weight: 700;
             margin-bottom: 10px;
             color: var(--secondary-color);
         }
 
         .stat-label {
-            font-size: 18px;
+            font-size: 16px;
             text-transform: uppercase;
         }
 
-        @media (max-width: 768px) {
+        /* Improved mobile styles */
+        @media (min-width: 768px) {
+            nav {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .logo {
+                margin-bottom: 0;
+            }
+
+            .logo img {
+                height: 60px;
+            }
+
+            .nav-links {
+                display: flex;
+                flex-direction: row;
+                width: auto;
+            }
+
+            .nav-links li {
+                margin: 0 15px;
+            }
+
+            .menu-toggle {
+                display: none;
+            }
+
             .hero h1 {
+                font-size: 56px;
+            }
+
+            .hero p {
+                font-size: 20px;
+            }
+
+            .cta-buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .intro h2 {
                 font-size: 40px;
             }
-            .hero p {
+
+            .intro p {
                 font-size: 18px;
             }
+
             .features {
-                flex-direction: column;
+                flex-direction: row;
+            }
+
+            .stat-item {
+                flex-basis: auto;
+            }
+
+            .stat-number {
+                font-size: 48px;
+            }
+
+            .stat-label {
+                font-size: 18px;
+            }
+        }
+
+        /* Additional mobile improvements */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #map {
+            height: 300px;
+        }
+
+        @media (min-width: 768px) {
+            #map {
+                height: 400px;
+            }
+        }
+
+        .form-container {
+            padding: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .form-container {
+                padding: 30px;
             }
         }
     </style>
@@ -801,7 +917,19 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
             });
         });
         
+ const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
 
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
     </script>
 </body>
 </html>
