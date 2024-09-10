@@ -41,34 +41,57 @@
             background-color: var(--dark-bg);
             color: var(--white);
             padding: 20px 0;
+            position: relative;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--white);
+            position: absolute;
+            top: 20px;
+            left: 20px;
         }
 
         nav ul {
             list-style-type: none;
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         nav ul li {
-            margin: 0 15px;
+            margin: 5px 15px;
         }
 
         nav ul li a {
             color: var(--white);
             text-decoration: none;
             font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
         }
 
         .hero {
             background-color: var(--primary-color);
             color: var(--white);
             text-align: center;
-            padding: 100px 0;
+            padding: 80px 0;
         }
 
         .hero h1 {
-            font-size: 48px;
+            font-size: 36px;
             margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .content {
@@ -78,37 +101,57 @@
         .content h2 {
             color: var(--primary-color);
             margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .content p {
+            margin-bottom: 20px;
         }
 
         .features {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             margin-top: 50px;
         }
 
         .feature {
-            flex: 1;
+            flex-basis: calc(33.333% - 20px);
             background-color: var(--white);
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin: 0 15px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
         .feature h3 {
             color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .feature i {
+            font-size: 40px;
+            color: var(--secondary-color);
             margin-bottom: 15px;
         }
 
         .cta {
             background-color: var(--secondary-color);
             text-align: center;
-            padding: 50px 0;
+            padding: 60px 0;
         }
 
         .cta h2 {
             color: var(--dark-bg);
             margin-bottom: 20px;
+            font-size: 32px;
         }
 
         .cta-button {
@@ -119,11 +162,12 @@
             text-decoration: none;
             border-radius: 5px;
             font-weight: 600;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .cta-button:hover {
             background-color: #008c5a;
+            transform: scale(1.05);
         }
 
         footer {
@@ -132,19 +176,60 @@
             text-align: center;
             padding: 20px 0;
         }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .content h2 {
+                font-size: 24px;
+            }
+
+            .feature {
+                flex-basis: 100%;
+            }
+
+            .cta h2 {
+                font-size: 28px;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="Index.html">الرئيسية</a></li>
-                <li><a href="Index.html#about">من نحن</a></li>
-                <li><a href="Index.html#solutions">حلولنا</a></li>
-                <li><a href="Index.html#impact">الأثر</a></li>
-                <li><a href="Index.html#get-involved">انضم إلينا</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="Index.html">الرئيسية</a></li>
+                    <li><a href="Index.html#about">من نحن</a></li>
+                    <li><a href="Index.html#solutions">حلولنا</a></li>
+                    <li><a href="Index.html#impact">الأثر</a></li>
+                    <li><a href="Index.html#get-involved">انضم إلينا</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <section class="hero">
@@ -161,14 +246,17 @@
 
             <div class="features">
                 <div class="feature">
+                    <i class="fas fa-heartbeat"></i>
                     <h3>صحي</h3>
                     <p>غني بالألياف والمعادن الأساسية، مما يجعله خيارًا مثاليًا للنظام الغذائي المتوازن.</p>
                 </div>
                 <div class="feature">
+                    <i class="fas fa-leaf"></i>
                     <h3>مستدام</h3>
                     <p>يساهم في تقليل النفايات الزراعية ويوفر مصدر دخل إضافي للمزارعين.</p>
                 </div>
                 <div class="feature">
+                    <i class="fas fa-utensils"></i>
                     <h3>متعدد الاستخدامات</h3>
                     <p>يمكن استخدامه في مجموعة متنوعة من الوصفات، من الخبز إلى الحلويات.</p>
                 </div>
@@ -188,5 +276,16 @@
             <p>&copy; 2024 بانوفا. جميع الحقوق محفوظة.</p>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navUl = document.querySelector('nav ul');
+
+            menuToggle.addEventListener('click', function() {
+                navUl.classList.toggle('active');
+            });
+        });
+    </script>
 </body>
 </html>
