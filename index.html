@@ -512,7 +512,52 @@
         </div>
     </div>
 </section>
+        <section id="impact-map" class="map-section">
+    <div class="container">
+        <h2>خريطة التأثير العالمي</h2>
+        <div id="map"></div>
+    </div>
+</section>
 
+<style>
+.map-section {
+    padding: 100px 0;
+    background-color: var(--bg-color);
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+</style>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var map = L.map('map').setView([0, 0], 2);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Add markers for your impact locations
+    var locations = [
+        {lat: 31.7917, lng: -7.0926, name: "المغرب"},
+        {lat: 30.0444, lng: 31.2357, name: "مصر"},
+        {lat: 23.8859, lng: 45.0792, name: "السعودية"},
+        // Add more locations as needed
+    ];
+
+    locations.forEach(function(loc) {
+        L.marker([loc.lat, loc.lng]).addTo(map)
+            .bindPopup(loc.name);
+    });
+});
+</script>
 
 <section id="get-involved" class="intro">
     <div class="container">
@@ -536,9 +581,9 @@
             </div>
         </div>
         
-       <div class="form-container">
+   <div class="form-container">
     <h3>اتصل بنا أو اشترِ منتجاتنا</h3>
-    <form id="contactForm">
+    <form id="contactForm" action="https://formspree.io/f/xdknvonz" method="POST">
         <div class="form-group">
             <label for="name">الاسم</label>
             <input type="text" id="name" name="name" required>
@@ -594,24 +639,31 @@ document.getElementById('interest').addEventListener('change', function() {
 
 document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
+    var form = this;
     
-    var formData = new FormData(this);
-    var jsonData = {};
-    formData.forEach(function(value, key){
-        jsonData[key] = value;
+    fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response.ok) {
+            alert('شكراً لك! تم إرسال رسالتك بنجاح.');
+            form.reset();
+        } else {
+            response.json().then(data => {
+                if (Object.hasOwn(data, 'errors')) {
+                    alert(data["errors"].map(error => error["message"]).join(", "));
+                } else {
+                    alert('عذراً، حدث خطأ أثناء إرسال الرسالة. الرجاء المحاولة مرة أخرى.');
+                }
+            })
+        }
+    }).catch(error => {
+        alert('عذراً، حدث خطأ أثناء إرسال الرسالة. الرجاء المحاولة مرة أخرى.');
     });
-
-    google.script.run.withSuccessHandler(onSuccess).withFailureHandler(onFailure).submitForm(jsonData);
 });
-
-function onSuccess(response) {
-    alert('شكراً لك! تم إرسال رسالتك بنجاح.');
-    document.getElementById('contactForm').reset();
-}
-
-function onFailure(error) {
-    alert('عذراً، حدث خطأ أثناء إرسال الرسالة. الرجاء المحاولة مرة أخرى.');
-}
 </script>
 <style>
     .form-container {
@@ -658,52 +710,7 @@ function onFailure(error) {
         cursor: pointer;
     }
 </style>
-        <section id="impact-map" class="map-section">
-    <div class="container">
-        <h2>خريطة التأثير العالمي</h2>
-        <div id="map"></div>
-    </div>
-</section>
 
-<style>
-.map-section {
-    padding: 100px 0;
-    background-color: var(--bg-color);
-}
-
-#map {
-    height: 400px;
-    width: 100%;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-</style>
-
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var map = L.map('map').setView([0, 0], 2);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
-
-    // Add markers for your impact locations
-    var locations = [
-        {lat: 31.7917, lng: -7.0926, name: "المغرب"},
-        {lat: 30.0444, lng: 31.2357, name: "مصر"},
-        {lat: 23.8859, lng: 45.0792, name: "السعودية"},
-        // Add more locations as needed
-    ];
-
-    locations.forEach(function(loc) {
-        L.marker([loc.lat, loc.lng]).addTo(map)
-            .bindPopup(loc.name);
-    });
-});
-</script>
 <!-- Impact Section -->
 <section id="impact" class="stats">
     <div class="container">
