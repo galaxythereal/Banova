@@ -293,48 +293,36 @@ footer {
             color: var(--primary-color);
         }
 
-   .stats {
-    background-color: var(--dark-bg);
-    color: var(--white);
-    padding: 50px 0;
-    text-align: center;
-    width: 100vw; /* Full width of the viewport */
-    margin: 0; /* Removes default margin */
-    box-sizing: border-box; /* Ensures padding doesn't affect the total width */
-}
+          .stats {
+            background-color: var(--dark-bg);
+            color: var(--white);
+            padding: 50px 0;
+            text-align: center;
+        }
 
-.secondcontainer {
-    max-width: 100%; /* Ensures the container spans the full width */
-    padding: 0 20px; /* Adds some padding to prevent content from touching edges */
-    margin: 0 auto; /* Centers the container content */
-}
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
 
-.stats-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    width: 100%; /* Ensures the stats-container uses full width of the parent */
-}
+        .stat-item {
+            flex-basis: calc(50% - 20px);
+            margin: 10px;
+        }
 
-.stat-item {
-    flex-basis: calc(50% - 20px);
-    margin: 10px;
-}
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
 
-.stat-number {
-    font-size: 36px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: var(--secondary-color);
-}
-
-.stat-label {
-    font-size: 16px;
-    text-transform: uppercase;
-}
-
-
+        .stat-label {
+            font-size: 16px;
+            text-transform: uppercase;
+        }
         /* Improved mobile styles */
         @media (min-width: 768px) {
             nav {
@@ -880,7 +868,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 </style>
 <!-- Impact Section -->
 <section id="impact" class="stats">
-    <div class="secondcontainer">
+    <div class="container">
         <h2 style="color: var(--secondary-color); margin-bottom: 30px;">تأثيرنا</h2>
         <p style="max-width: 800px; margin: 0 auto 40px;">في بانوفا، تأثيرنا يتجاوز المنتجات؛ يتعلق بتغيير الحياة، وحماية البيئة، وخلق مستقبل مستدام للجميع. عملنا يساهم بشكل مباشر في أهداف التنمية المستدامة للأمم المتحدة، مما يواجه التحديات في مجالات التغذية والزراعة وغيرها.</p>
         <div class="stats-container">
