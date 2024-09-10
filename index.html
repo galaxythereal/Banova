@@ -32,11 +32,11 @@
             text-align: right;
         }
 
-        .container {
+/*         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-        }
+        } */
 
         /* Mobile-first approach */
         header {
@@ -293,13 +293,20 @@ footer {
             color: var(--primary-color);
         }
 
-     .stats {
+   .stats {
     background-color: var(--dark-bg);
     color: var(--white);
     padding: 50px 0;
     text-align: center;
-    width: 100vw; /* Ensures the section spans the full width of the viewport */
-    margin: 0; /* Removes any default margin */
+    width: 100vw; /* Full width of the viewport */
+    margin: 0; /* Removes default margin */
+    box-sizing: border-box; /* Ensures padding doesn't affect the total width */
+}
+
+.container {
+    max-width: 100%; /* Ensures the container spans the full width */
+    padding: 0 20px; /* Adds some padding to prevent content from touching edges */
+    margin: 0 auto; /* Centers the container content */
 }
 
 .stats-container {
@@ -307,10 +314,7 @@ footer {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    width: 100%; /* Ensures the container spans the full width of the parent */
-    max-width: 1200px; /* Optional: Limit the max width for better readability on larger screens */
-    margin: 0 auto; /* Center the container within the stats section */
-    padding: 0 20px; /* Optional: Adds padding to prevent content from touching the edges */
+    width: 100%; /* Ensures the stats-container uses full width of the parent */
 }
 
 .stat-item {
@@ -329,6 +333,7 @@ footer {
     font-size: 16px;
     text-transform: uppercase;
 }
+
 
         /* Improved mobile styles */
         @media (min-width: 768px) {
@@ -873,13 +878,12 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
         cursor: pointer;
     }
 </style>
-
 <!-- Impact Section -->
 <section id="impact" class="stats">
-    <div class="stats-container">
+    <div class="container">
         <h2 style="color: var(--secondary-color); margin-bottom: 30px;">تأثيرنا</h2>
         <p style="max-width: 800px; margin: 0 auto 40px;">في بانوفا، تأثيرنا يتجاوز المنتجات؛ يتعلق بتغيير الحياة، وحماية البيئة، وخلق مستقبل مستدام للجميع. عملنا يساهم بشكل مباشر في أهداف التنمية المستدامة للأمم المتحدة، مما يواجه التحديات في مجالات التغذية والزراعة وغيرها.</p>
-        <div class="stats-items">
+        <div class="stats-container">
             <div class="stat-item">
                 <div class="stat-number" data-target="13000">0</div>
                 <div class="stat-label">المجتمعات المستفيدة</div>
