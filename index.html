@@ -149,10 +149,17 @@
 
 
 
-<!-- Testimonials Section (updated with icons) -->
+<!-- Testimonials Section (updated with counter and icons) -->
 <section id="testimonials" class="section">
   <div class="container">
     <h2>تمكين السيدات وتحويل المجتمعات</h2>
+    <!-- Women Empowered Counter -->
+    <div class="counter-container">
+      <div class="counter-item">
+        <div class="counter" data-target="2000">0</div>
+        <div class="counter-label">عدد السيدات الممكّنات</div>
+      </div>
+    </div>
     <div class="testimonial-slider">
       <div class="testimonial-item">
         <div class="testimonial-icon">
@@ -201,8 +208,8 @@
 
 .counter-container {
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 40px;
 }
 
 .counter-item {
@@ -228,7 +235,7 @@
 
 #testimonials h2 {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   font-size: 36px;
   color: var(--primary-color);
 }
@@ -292,6 +299,7 @@ cite {
   }
 }
 </style>
+
 
 <script>
 // Impact Counter Animation (unchanged)
