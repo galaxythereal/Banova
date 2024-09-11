@@ -342,17 +342,15 @@ function nextTestimonial() {
 showTestimonial(currentTestimonial);
 setInterval(nextTestimonial, 5000); // Change testimonial every 5 seconds
 </script>
-
-        <section id="impact-map" class="map-section">
+<section id="impact-map" class="map-section">
     <div class="container">
         <h2>خريطة التأثير العالمي</h2>
-        <div id="map"></div>
+        <div id="map" style="height: 500px;"></div> <!-- Adjust height as needed -->
     </div>
 </section>
 
-
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -362,20 +360,52 @@ document.addEventListener('DOMContentLoaded', function() {
         attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-// Add markers for your impact locations
-var locations = [
-    {lat: 20.5937, lng: 78.9629, name: "الهند"}, // India
-    {lat: -30.5595, lng: 22.9375, name: "جنوب أفريقيا"}, // South Africa
-    {lat: -14.2350, lng: -51.9253, name: "البرازيل"}, // Brazil
-    // Add more locations as needed
-];
+    var locations = [
+        {lat: 20.5937, lng: 78.9629, name: "الهند"}, // India
+        {lat: -30.5595, lng: 22.9375, name: "جنوب أفريقيا"}, // South Africa
+        {lat: -14.2350, lng: -51.9253, name: "البرازيل"}, // Brazil
+        {lat: 26.8206, lng: 30.8025, name: "مصر"} // Egypt
+        // Add more locations as needed
+    ];
 
+    // Define a custom icon style using --primary-color
+    var customIcon = L.divIcon({
+        className: 'custom-marker',
+        html: `<i class="fas fa-map-marker-alt"></i>`,
+        iconSize: [25, 41],
+        iconAnchor: [12, 41]
+    });
 
+    // Add markers with the custom icon
     locations.forEach(function(loc) {
-        L.marker([loc.lat, loc.lng]).addTo(map)
+        L.marker([loc.lat, loc.lng], {icon: customIcon}).addTo(map)
             .bindPopup(loc.name);
     });
 });
+</script>
+
+<style>
+:root {
+    --primary-color: #ff6347; /* Example color; adjust as needed */
+}
+
+#impact-map {
+    padding: 80px 0;
+}
+
+#impact-map h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 36px;
+    color: var(--primary-color);
+}
+
+.custom-marker i {
+    font-size: 24px;
+    color: var(--primary-color);
+}
+</style>
+
 </script>
     <section id="video" class="video-section">
        <div class="container">
