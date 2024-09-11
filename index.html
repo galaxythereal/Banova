@@ -390,31 +390,160 @@ var locations = [
     });
 });
 </script>
-<!-- Impact Section -->
-<section id="impact" class="stats">
+<!-- Updated Impact Section -->
+<section id="impact" class="impact-section">
     <div class="container">
-        <h2 style="color: var(--secondary-color); margin-bottom: 30px;">تأثيرنا</h2>
-        <p style="max-width: 800px; margin: 0 auto 40px;">في بانوفا، تأثيرنا يتجاوز المنتجات؛ يتعلق بتغيير الحياة، وحماية البيئة، وخلق مستقبل مستدام للجميع. عملنا يساهم بشكل مباشر في أهداف التنمية المستدامة للأمم المتحدة، مما يواجه التحديات في مجالات التغذية والزراعة وغيرها.</p>
-        <div class="stats-container">
-            <div class="stat-item">
-                <div class="stat-number" data-target="13000">0</div>
-                <div class="stat-label">المجتمعات المستفيدة</div>
+        <h2>تأثيرنا</h2>
+        <p class="impact-description">في بانوفا، تأثيرنا يتجاوز المنتجات؛ يتعلق بتغيير الحياة، وحماية البيئة، وخلق مستقبل مستدام للجميع. عملنا يساهم بشكل مباشر في أهداف التنمية المستدامة للأمم المتحدة، مما يواجه التحديات في مجالات التغذية والزراعة وغيرها.</p>
+        <div class="counter-container">
+            <div class="counter-item">
+                <div class="counter" data-target="13000">0</div>
+                <div class="counter-label">المجتمعات المستفيدة</div>
             </div>
-            <div class="stat-item">
-                <div class="stat-number" data-target="20">0</div>
-                <div class="stat-label">الدول التي وصلنا إليها</div>
+            <div class="counter-item">
+                <div class="counter" data-target="20">0</div>
+                <div class="counter-label">الدول التي وصلنا إليها</div>
             </div>
-            <div class="stat-item">
-                <div class="stat-number" data-target="100">0</div>
-                <div class="stat-label">الجوائز والاعترافات</div>
+            <div class="counter-item">
+                <div class="counter" data-target="100">0</div>
+                <div class="counter-label">الجوائز والاعترافات</div>
             </div>
-            <div class="stat-item">
-                <div class="stat-number" data-target="15">0</div>
-                <div class="stat-label">الأهداف التنموية التي نحققها</div>
+            <div class="counter-item">
+                <div class="counter" data-target="15">0</div>
+                <div class="counter-label">الأهداف التنموية التي نحققها</div>
             </div>
         </div>
     </div>
 </section>
+
+<style>
+/* Updated Impact Section Styles */
+.impact-section {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 80px 0;
+    text-align: center;
+}
+
+.impact-section h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+}
+
+.impact-description {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.counter-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.counter-item {
+    flex: 1;
+    min-width: 200px;
+    max-width: 250px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.counter-item:hover {
+    transform: translateY(-5px);
+}
+
+.counter {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.counter-label {
+    font-size: 18px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .impact-section h2 {
+        font-size: 28px;
+    }
+    
+    .impact-description {
+        font-size: 16px;
+        padding: 0 20px;
+    }
+    
+    .counter-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .counter-item {
+        width: 100%;
+        max-width: none;
+    }
+    
+    .counter {
+        font-size: 36px;
+    }
+    
+    .counter-label {
+        font-size: 16px;
+    }
+}
+</style>
+
+<script>
+// Counter Animation
+function animateCounters() {
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200; // The lower the slower
+
+    counters.forEach(counter => {
+        const updateCount = () => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const inc = target / speed;
+
+            if (count < target) {
+                counter.innerText = Math.ceil(count + inc);
+                setTimeout(updateCount, 1);
+            } else {
+                counter.innerText = target;
+            }
+        };
+
+        updateCount();
+    });
+}
+
+// Intersection Observer to trigger counter animation when in view
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            animateCounters();
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.impact-section').forEach(section => {
+    observer.observe(section);
+});
+</script>
 <section id="get-involved" class="intro">
     <div class="container">
         <h2>شارك معنا</h2>
