@@ -144,6 +144,205 @@
         </div>
     </div>
 </section>
+
+        <!-- قسم عداد التأثير المباشر -->
+<section id="impact-counter" class="section">
+  <div class="container">
+    <h2>تأثيرنا المتزايد</h2>
+    <div class="counter-container">
+      <div class="counter-item">
+        <div class="counter" data-target="500000">0</div>
+        <div class="counter-label">كيلوغرام من مخلفات الموز المعاد تدويرها</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter" data-target="2000">0</div>
+        <div class="counter-label">نساء تم تمكينهن</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter" data-target="50">0</div>
+        <div class="counter-label">مجتمعات متأثرة</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- قسم الشهادات -->
+<section id="testimonials" class="section">
+  <div class="container">
+    <h2>تمكين النساء، وتحويل المجتمعات</h2>
+    <div class="testimonial-slider">
+      <div class="testimonial-item">
+        <img src="https://i.postimg.cc/8CJQtnNw/1.png" alt="فاطمة" class="testimonial-image">
+        <blockquote>
+          "مبادرة بانوفا منحتني الاستقلال المالي والشعور بالهدف. الآن أقود فريقًا من النساء في إنتاج الدقيق الخالي من الغلوتين، مما يساهم في رفاهية أسرتي ونمو مجتمعي."
+        </blockquote>
+        - فاطمة، قائدة إنتاج دقيق الموز
+      </div>
+      <div class="testimonial-item">
+        <img src="https://i.postimg.cc/qRxHGmQF/2.png" alt="عائشة" class="testimonial-image">
+        <blockquote>
+          "من خلال برامج تدريب بانوفا، اكتسبت مهارات قيمة في الزراعة المستدامة. الآن أقوم بتعليم النساء الأخريات في قريتي، مما يخلق تأثيرًا متسلسلًا من المعرفة والتمكين."
+        </blockquote>
+        - عائشة، مدربة زراعية
+      </div>
+      <div class="testimonial-item">
+        <img src="https://i.postimg.cc/kGQmRTM7/3.png" alt="ليلى" class="testimonial-image">
+        <blockquote>
+          "كوني أم عزباء، كان لفرصة العمل في إنتاج الهيدروجيل مع بانوفا تأثيرًا كبيرًا على حياتي. الآن أستطيع إعالة أطفالي والمساهمة في الاستدامة البيئية."
+        </blockquote>
+        - ليلى، أخصائية إنتاج الهيدروجيل
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* أنماط عداد التأثير */
+#impact-counter {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 80px 0;
+}
+
+#impact-counter h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 36px;
+}
+
+.counter-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.counter-item {
+  text-align: center;
+  margin: 20px;
+}
+
+.counter {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.counter-label {
+  font-size: 18px;
+}
+
+/* أنماط الشهادات */
+#testimonials {
+  background-color: var(--bg-color);
+  padding: 80px 0;
+}
+
+#testimonials h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 36px;
+  color: var(--primary-color);
+}
+
+.testimonial-slider {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.testimonial-item {
+  text-align: center;
+  padding: 20px;
+}
+
+.testimonial-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+blockquote {
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+cite {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+/* التصميم المتجاوب */
+@media (max-width: 768px) {
+  .counter-container {
+    flex-direction: column;
+  }
+  
+  .counter-item {
+    margin: 10px 0;
+  }
+  
+  .counter {
+    font-size: 36px;
+  }
+  
+  .counter-label {
+    font-size: 16px;
+  }
+  
+  #testimonials h2 {
+    font-size: 28px;
+  }
+  
+  blockquote {
+    font-size: 16px;
+  }
+}
+</style>
+
+<script>
+// أنميشن عداد التأثير
+const counters = document.querySelectorAll('.counter');
+const speed = 200; // كلما قل الرقم، أصبح الأبطأ
+
+counters.forEach(counter => {
+  const updateCount = () => {
+    const target = +counter.getAttribute('data-target');
+    const count = +counter.innerText;
+    const inc = target / speed;
+
+    if (count < target) {
+      counter.innerText = Math.ceil(count + inc);
+      setTimeout(updateCount, 1);
+    } else {
+      counter.innerText = target;
+    }
+  };
+
+  updateCount();
+});
+
+// شريط تمرير الشهادات
+let currentTestimonial = 0;
+const testimonials = document.querySelectorAll('.testimonial-item');
+
+function showTestimonial(index) {
+  testimonials.forEach((testimonial, i) => {
+    testimonial.style.display = i === index ? 'block' : 'none';
+  });
+}
+
+function nextTestimonial() {
+  currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+  showTestimonial(currentTestimonial);
+}
+
+// تهيئة عرض الشهادة وضبط الفاصل الزمني للتدوير
+showTestimonial(currentTestimonial);
+setInterval(nextTestimonial, 5000); // تغيير الشهادة كل 5 ثوانٍ
+</script>
+
         <section id="impact-map" class="map-section">
     <div class="container">
         <h2>خريطة التأثير العالمي</h2>
